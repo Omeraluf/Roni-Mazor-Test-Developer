@@ -1,34 +1,56 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Test } from "@/data/tests";
+import { Card } from "@/components/ui/card";
+import { Tag } from "@/components/ui/tag";
 
 export function TestCard({ test }: { test: Test }) {
   return (
     <Link
       href={`/tests/${test.slug}`}
-      className="group block overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 hover:shadow-xl transition-all"
+      className="group block h-full"
     >
-      <div className="relative h-36 overflow-hidden">
-        <Image
-          src={test.image}
-          alt={test.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute top-3 left-3 text-[11px] rounded-full bg-white/90 px-3 py-1">
-          {test.grade}
-        </div>
-      </div>
+      <Card
+        padding="none"
+        hoverable
+        className="overflow-hidden h-full flex flex-col"
+      >
+        {/* Image */}
+        <div className="relative h-36 overflow-hidden">
+          <Image
+            src={test.image}
+            alt={test.title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
 
-      <div className="p-4 space-y-2 text-right">
-        <h3 className="font-semibold text-sm">{test.title}</h3>
-        <p className="text-xs text-slate-500 line-clamp-2">{test.subtitle}</p>
-
-        <div className="flex items-center justify-between text-[11px] text-slate-500 mt-2">
-          <span>⏱ {test.duration} דקות</span>
-          <span>❓ {test.questions} שאלות</span>
+          <div className="absolute top-3 left-3 flex gap-2">
+            <Tag variant="purple" className="text-[11px] px-2.5 py-0.5">
+              {test.grade}
+            </Tag>
+            {test.isRecommended && (
+              <Tag variant="success" className="text-[11px] px-2.5 py-0.5">
+                מומלץ
+              </Tag>
+            )}
+          </div>
         </div>
-      </div>
+
+        {/* Content */}
+        <div className="p-4 space-y-2 text-right">
+          <h3 className="font-semibold text-sm text-[#111827]">
+            {test.title}
+          </h3>
+          <p className="text-xs text-[#6B7280] line-clamp-2">
+            {test.subtitle}
+          </p>
+
+          <div className="flex items-center justify-between text-[11px] text-[#6B7280] mt-2">
+            <span>⏱ {test.duration} דקות</span>
+            <span>❓ {test.questions} שאלות</span>
+          </div>
+        </div>
+      </Card>
     </Link>
   );
 }

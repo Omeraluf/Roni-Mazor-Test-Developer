@@ -9,6 +9,7 @@ export type Test = {
   grade: string;
   image: string;
   isRecommended: boolean;
+  description: string;
   items: {
     id: number;
     question: string;
@@ -28,6 +29,7 @@ const tests: Test[] = [
     grade: "כיתה ב׳",
     image: "/images/Roni-pic.jpeg",
     isRecommended: true,
+    description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [
     {
         id: 1,
@@ -52,6 +54,7 @@ const tests: Test[] = [
     grade: "נוער ומבוגרים",
     image: "/images/Roni-pic.jpeg",
     isRecommended: true,
+    description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [
     {
         id: 1,
@@ -77,6 +80,7 @@ const tests: Test[] = [
     grade: "כל הגילאים",
     image: "/images/Roni-pic.jpeg",
     isRecommended: true,
+    description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [
     {
         id: 1,

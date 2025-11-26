@@ -16,11 +16,12 @@ export default function TestsPage() {
           </p>
         </header>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {tests.map((test) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {tests.map(test => (
             <TestCard key={test.slug} test={test} />
           ))}
         </div>
+
       </div>
     </div>
   );
