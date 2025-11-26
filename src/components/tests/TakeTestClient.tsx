@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import type { Test } from "@/data/tests";
 import { Card } from "@/components/ui/card";
@@ -17,8 +17,42 @@ export function TakeTestClient({ test }: { test: Test }) {
   );
   const [finished, setFinished] = useState(false);
 
+  // ⏱ timer state (seconds)
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    test.duration * 60
+  );
+
   const current = test.items[index];
-  const progress = ((index + 1) / test.items.length) * 100;
+const timeProgress = (remainingSeconds / (test.duration * 60)) * 100;
+
+const totalQuestions = test.items.length;
+const answeredCount = answers.filter((a) => a !== -1).length;
+const questionProgress = finished
+  ? 100
+  : (answeredCount / totalQuestions) * 100;
+
+
+  // ⏱ countdown effect
+  useEffect(() => {
+    if (finished) return;
+    if (remainingSeconds <= 0) {
+      setFinished(true);
+      return;
+    }
+
+    const id = setInterval(() => {
+      setRemainingSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(id);
+          setFinished(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, [finished, remainingSeconds]);
 
   function selectOption(optionIndex: number) {
     const updated = [...answers];
@@ -37,6 +71,12 @@ export function TakeTestClient({ test }: { test: Test }) {
       setIndex((prev) => prev - 1);
     }
   }
+
+  const formatTime = (totalSeconds: number) => {
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return `${m}:${s.toString().padStart(2, "0")}`;
+  };
 
   // --- Finished view --------------------------------------------------------
   if (finished) {
@@ -92,6 +132,7 @@ export function TakeTestClient({ test }: { test: Test }) {
                   setFinished(false);
                   setIndex(0);
                   setAnswers(Array(test.items.length).fill(-1));
+                  setRemainingSeconds(test.duration * 60); // 🔁 reset timer
                 }}
               >
                 נסה שוב
@@ -158,8 +199,11 @@ export function TakeTestClient({ test }: { test: Test }) {
 
                     <div className="space-y-2">
                       {item.options.map((optionText, optionIdx) => {
-                        let state: "default" | "selected" | "correct" | "incorrect" =
-                          "default";
+                        let state:
+                          | "default"
+                          | "selected"
+                          | "correct"
+                          | "incorrect" = "default";
 
                         if (optionIdx === item.correct) {
                           state = "correct";
@@ -173,7 +217,6 @@ export function TakeTestClient({ test }: { test: Test }) {
                             text={optionText}
                             label={hebrewLabels[optionIdx] ?? undefined}
                             state={state}
-                            // review mode – no onClick
                             disabled
                           />
                         );
@@ -205,12 +248,21 @@ export function TakeTestClient({ test }: { test: Test }) {
                 שאלה {index + 1} מתוך {test.items.length}
               </p>
             </div>
+
+            {/* ⏱ time left */}
+            <div className="text-left">
+              <p className="text-[11px] text-[#6B7280]">זמן נותר</p>
+              <p className="text-sm font-semibold text-[#111827]">
+                {formatTime(remainingSeconds)}
+              </p>
+            </div>
           </div>
 
+          {/* Progress bars */}
           <div className="space-y-1">
-            <ProgressBar value={progress} />
+            <ProgressBar value={questionProgress} />
             <p className="text-[11px] text-[#9CA3AF] text-left">
-              {progress.toFixed(0)}% הושלמו
+              {questionProgress.toFixed(0)}% מהשאלות
             </p>
           </div>
         </div>
@@ -236,34 +288,33 @@ export function TakeTestClient({ test }: { test: Test }) {
             })}
           </div>
         </Card>
-            
-            {/* Question navigation */}
+
         {/* Question navigation */}
         <div className="space-y-2">
-        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             {/* Label on the right (RTL) */}
             <p
-            className="text-[11px] text-[#6B7280]"
-            dir="rtl"
+              className="text-[11px] text-[#6B7280]"
+              dir="rtl"
             >
-            ניווט בין השאלות
+              ניווט בין השאלות
             </p>
-            
+
             {/* Numbers on the left (LTR) */}
             <div
-            className="flex flex-wrap gap-2 justify-start"
-            dir="ltr"
+              className="flex flex-wrap gap-2 justify-start"
+              dir="ltr"
             >
-            {test.items.map((_, i) => {
+              {test.items.map((_, i) => {
                 const isCurrent = i === index;
                 const isAnswered = answers[i] !== -1;
 
                 return (
-                <Button
+                  <Button
                     key={i}
                     size="sm"
                     variant={
-                    isCurrent
+                      isCurrent
                         ? "primary"
                         : isAnswered
                         ? "soft"
@@ -271,16 +322,14 @@ export function TakeTestClient({ test }: { test: Test }) {
                     }
                     className="min-w-9"
                     onClick={() => setIndex(i)}
-                >
+                  >
                     {i + 1}
-                </Button>
+                  </Button>
                 );
-            })}
+              })}
             </div>
+          </div>
         </div>
-        </div>
-
-
 
         {/* Navigation */}
         <div className="flex items-center justify-between pt-2">
