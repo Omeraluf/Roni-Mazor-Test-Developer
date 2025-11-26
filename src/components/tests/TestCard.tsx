@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { TestCardData } from "@/data/tests";
+import type { Test } from "@/data/tests";
 
-export function TestCard({ test }: { test: TestCardData }) {
+export function TestCard({ test }: { test: Test }) {
   return (
     <Link
       href={`/tests/${test.slug}`}

@@ -2,20 +2,22 @@
 
 import { motion } from "framer-motion";
 import { TestCard } from "@/components/tests/TestCard";
-import { recommendedTests } from "@/data/tests";
+import { getRecommendedTests } from "@/data/tests";
 
 export function RecommendedTests() {
+  const tests = getRecommendedTests();
+
   return (
-    <section id="recommended-tests" className="space-y-6 text-right">
+    <section id="home-tests" className="space-y-6 text-right">
       <div>
         <h2 className="text-2xl font-semibold text-slate-900">מבחנים מומלצים</h2>
         <p className="text-sm text-slate-600">
-          התחילו להתאמן עם המבחנים הפופולריים באתר.
+          התחילו להתאמן עם המבחנים הפופולריים ביותר באתר.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        {recommendedTests.map((test, idx) => (
+        {tests.map((test, idx) => (
           <motion.div
             key={test.slug}
             initial={{ opacity: 0, y: 20 }}

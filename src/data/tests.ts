@@ -1,4 +1,6 @@
-export type TestCardData = {
+// src/data/tests.ts
+
+export type Test = {
   slug: string;
   title: string;
   subtitle: string;
@@ -6,34 +8,100 @@ export type TestCardData = {
   questions: number;
   grade: string;
   image: string;
+  isRecommended: boolean;
+  items: {
+    id: number;
+    question: string;
+    options: string[];
+    correct: number;
+  }[];
 };
 
-export const recommendedTests: TestCardData[] = [
+
+const tests: Test[] = [
   {
     slug: "gifted-grade-b",
     title: "מבחן מחוננים - כיתה ב׳",
     subtitle: "מבחן תרגול מקיף המדמה את מבחן המחוננים הארצי.",
     duration: 45,
-    questions: 5,
+    questions: 25,
     grade: "כיתה ב׳",
-    image: "/images/Roni-pic.jpeg"
+    image: "/images/Roni-pic.jpeg",
+    isRecommended: true,
+        items: [
+    {
+        id: 1,
+        question: "איזו צורה משלימה את הרצף?",
+        options: ["◼︎", "▲", "●", "◆"],
+        correct: 2,
+    },
+    {
+        id: 2,
+        question: "מה מספר הבא בסדרה: 2, 4, 8, 16, ?",
+        options: ["24", "30", "32", "36"],
+        correct: 2,
+    },
+    ],
   },
   {
-    slug: "psychometry-prep",
-    title: "הכנה לפסיכומטרי - סימולציה קצרה",
-    subtitle: "היכרות עם שאלות נפוצות לקראת פסיכומטרי.",
-    duration: 20,
-    questions: 10,
+    slug: "psychometry-mini",
+    title: "פרה-פסיכומטרי - חשיבה כמותית",
+    subtitle: "מבחן קצר להכרת סגנון השאלות במבחן הפסיכומטרי.",
+    duration: 30,
+    questions: 20,
     grade: "נוער ומבוגרים",
-    image: "/images/Roni-pic.jpeg"
+    image: "/images/Roni-pic.jpeg",
+    isRecommended: true,
+        items: [
+    {
+        id: 1,
+        question: "איזו צורה משלימה את הרצף?",
+        options: ["◼︎", "▲", "●", "◆"],
+        correct: 2,
+    },
+    {
+        id: 2,
+        question: "מה מספר הבא בסדרה: 2, 4, 8, 16, ?",
+        options: ["24", "30", "32", "36"],
+        correct: 2,
+    },
+    ],
+
   },
   {
     slug: "cognitive-basic",
     title: "מבחן קוגניטיבי בסיסי",
-    subtitle: "הערכת יכולות חשיבה, קשב וזיכרון.",
-    duration: 15,
-    questions: 8,
+    subtitle: "הערכת זיכרון, קשב וחשיבה לוגית בצורה ידידותית.",
+    duration: 20,
+    questions: 15,
     grade: "כל הגילאים",
-    image: "/images/Roni-pic.jpeg"
-  }
+    image: "/images/Roni-pic.jpeg",
+    isRecommended: true,
+        items: [
+    {
+        id: 1,
+        question: "איזו צורה משלימה את הרצף?",
+        options: ["◼︎", "▲", "●", "◆"],
+        correct: 2,
+    },
+    {
+        id: 2,
+        question: "מה מספר הבא בסדרה: 2, 4, 8, 16, ?",
+        options: ["24", "30", "32", "36"],
+        correct: 2,
+    },
+    ],
+  },
 ];
+
+export function getAllTests(): Test[] {
+  return tests;
+}
+
+export function getRecommendedTests(): Test[] {
+  return tests.filter((t) => t.isRecommended);
+}
+
+export function getTestBySlug(slug: string): Test | undefined {
+  return tests.find((t) => t.slug === slug);
+}
