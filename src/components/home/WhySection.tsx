@@ -22,37 +22,46 @@ const items = [
 
 export function WhySection() {
   return (
-    <section className="text-right">
-      <div className="space-y-3 mb-8">
-        <h2 className="text-2xl font-semibold text-white">למה לבחור בי?</h2>
-        <p className="text-sm text-violet-100 max-w-xl">
-          כמפתחת מבחנים ומחנכת, אני משלבת ידע מקצועי, רגישות לילד ולמשפחה והיכרות
-          עמוקה עם עולם המבחנים.
-        </p>
-      </div>
+    <section className="w-full py-16 md:py-20">
+      <div className="max-w-6xl mx-auto px-4 text-center">
+        <div className="space-y-3 mb-10">
+          <h2 className="text-3xl font-bold text-brand-700">
+            למה לבחור בי?
+          </h2>
+          <p className="text-sm text-slate-600 max-w-md mx-auto">
+            כמפתחת מבחנים ומחנכת, אני משלבת ידע מקצועי, רגישות לילד ולמשפחה
+            והיכרות עמוקה עם עולם המבחנים.
+          </p>
+        </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        {items.map((item, idx) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.25, delay: idx * 0.06 }}
-            className="rounded-3xl bg-white/10 border border-white/20 p-4 flex flex-col gap-3"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-2xl">{item.icon}</span>
-              <span className="text-[11px] px-3 py-1 rounded-full bg-white/15 text-violet-50">
-                יתרון {idx + 1}
-              </span>
-            </div>
-            <div className="space-y-1">
-              <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-              <p className="text-xs text-violet-100 leading-relaxed">{item.text}</p>
-            </div>
-          </motion.div>
-        ))}
+        <div className="grid gap-6 md:grid-cols-3">
+          {items.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.25, delay: idx * 0.06 }}
+              className="rounded-[30px] bg-white border border-brand-100/70 shadow-lg shadow-slate-900/5 p-6 flex flex-col gap-4 text-right"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">{item.icon}</span>
+                <span className="text-[11px] px-3 py-1 rounded-full bg-brand-50 text-brand-600">
+                  יתרון {idx + 1}
+                </span>
+              </div>
+
+              <div className="space-y-1">
+                <h3 className="text-sm font-semibold text-slate-900">
+                  {item.title}
+                </h3>
+                <p className="text-xs leading-relaxed text-slate-600">
+                  {item.text}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
