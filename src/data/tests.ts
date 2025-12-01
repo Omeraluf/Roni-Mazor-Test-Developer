@@ -27,7 +27,7 @@ const tests: Test[] = [
     duration: 45,
     questions: 25,
     grade: "כיתה ב׳",
-    image: "/images/Roni-pic.jpeg",
+    image: "/images/exam.png",
     isRecommended: true,
     description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [
@@ -52,7 +52,7 @@ const tests: Test[] = [
     duration: 30,
     questions: 20,
     grade: "נוער ומבוגרים",
-    image: "/images/Roni-pic.jpeg",
+    image: "/images/exam1.png",
     isRecommended: true,
     description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [
@@ -78,7 +78,7 @@ const tests: Test[] = [
     duration: 20,
     questions: 15,
     grade: "כל הגילאים",
-    image: "/images/Roni-pic.jpeg",
+    image: "/images/exam4.png",
     isRecommended: true,
     description: "מבחן תרגול מקצועי שמטרתו לאמן את הילד/ה ולשפר את מיומנויות החשיבה, הפתרון, וההיערכות למבחני קבלה.",
         items: [

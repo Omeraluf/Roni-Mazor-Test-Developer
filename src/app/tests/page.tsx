@@ -7,11 +7,10 @@ export default function TestsPage() {
   const tests = getAllTests();
 
   return (
-    <div className="bg-slate-50 min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-16 space-y-8">
-        <header className="space-y-2 text-right">
-          <h1 className="text-3xl font-semibold text-slate-900">כל המבחנים</h1>
-          <p className="text-sm text-slate-600">
+        <header className="max-w-6xl mx-auto px-4 space-y-6 text-center">
+          <h1 className="text-3xl font-bold text-white drop-shadow">כל המבחנים</h1>
+          <p className="text-sm text-white/80 max-w-md mx-auto">
             בחרו מבחן מהרשימה והתחילו להתאמן בקצב שלכם.
           </p>
         </header>
@@ -23,6 +22,5 @@ export default function TestsPage() {
         </div>
 
       </div>
-    </div>
   );
 }

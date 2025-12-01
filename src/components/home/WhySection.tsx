@@ -1,22 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CheckCheck, UserCog, Heart } from "lucide-react";
+
 
 const items = [
   {
     title: "מבחנים מקצועיים ומדויקים",
     text: "המבחנים מבוססים על ידע פדגוגי וניסיון מהשטח, ולא על שאלות אקראיות מהאינטרנט.",
-    icon: "📐",
+    icon: <CheckCheck className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "התאמה אישית ללומד",
     text: "התחשבות בגיל, בקשיים, ובמטרה – מחוננים, פסיכומטרי, קוגניטיבי ועוד.",
-    icon: "🧩",
+    icon: <UserCog className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "חוויה רגועה ובטוחה",
     text: "המטרה היא להפחית לחץ סביב מבחנים, לתת היכרות מוקדמת וביטחון.",
-    icon: "💜",
+    icon: <Heart className="w-7 h-7 text-brand-600" />,
   },
 ];
 
@@ -46,9 +48,9 @@ export function WhySection() {
             >
               <div className="flex items-center justify-between">
                 <span className="text-2xl">{item.icon}</span>
-                <span className="text-[11px] px-3 py-1 rounded-full bg-brand-50 text-brand-600">
+                {/* <span className="text-[11px] px-3 py-1 rounded-full bg-brand-50 text-brand-600">
                   יתרון {idx + 1}
-                </span>
+                </span> */}
               </div>
 
               <div className="space-y-1">

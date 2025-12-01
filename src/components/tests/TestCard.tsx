@@ -20,6 +20,8 @@ export function TestCard({ test }: { test: Test }) {
           <Image
             src={test.image}
             alt={test.title}
+            // width={1500}           // larger than needed → sharp
+            // height={1200}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />

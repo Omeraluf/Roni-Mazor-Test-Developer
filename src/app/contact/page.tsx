@@ -1,17 +1,19 @@
 export default function ContactPage() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-16 space-y-8 text-right">
-        <h1 className="text-3xl font-semibold text-slate-900">צור קשר</h1>
+    
 
-        <p className="text-sm text-slate-700">
+    
+      <div className="max-w-6xl mx-auto px-4 space-y-6 text-center py-12">
+        <h1 className="text-3xl font-bold text-white drop-shadow">צור קשר</h1>
+
+        <p className="text-sm text-white/80 max-w-md mx-auto">
           יש לכם שאלות לגבי אחד המבחנים? רוצים להתייעץ לגבי התאמה לילד או למבוגר?
           מוזמנים להשאיר פרטים ורוני תחזור אליכם.
         </p>
 
-        <form className="space-y-4 max-w-md">
+        <form className="space-y-4 max-w-md text-center mx-auto">
           <div className="space-y-1">
-            <label className="text-xs text-slate-700">שם מלא</label>
+            <label className="text-sm text-white/80 max-w-md mx-auto">שם מלא</label>
             <input
               type="text"
               className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm"
@@ -19,7 +21,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs text-slate-700">אימייל</label>
+            <label className="text-sm text-white/80 max-w-md mx-auto">אימייל</label>
             <input
               type="email"
               className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm"
@@ -27,7 +29,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs text-slate-700">הודעה</label>
+            <label className="text-sm text-white/80 max-w-md mx-auto">הודעה</label>
             <textarea
               rows={4}
               className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm"
@@ -42,6 +44,5 @@ export default function ContactPage() {
           </button>
         </form>
       </div>
-    </div>
   );
 }

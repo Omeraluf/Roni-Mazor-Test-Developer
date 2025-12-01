@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Sparkles, GraduationCap, Brain, BookOpen, UserRound } from "lucide-react";
 
 const specialties = [
   {
@@ -8,37 +9,38 @@ const specialties = [
     description:
       "הכנה מקיפה למבחני מחוננים לכל הגילאים – כיתה ב׳, ג׳, חשיבה כמותית, מילולית וזיכרון.",
     tag: "ילדים – כיתות א׳-ו׳",
-    emoji: "✨",
+    icon: <Sparkles className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "פרה-פסיכומטרי",
     description:
       "תרגול והכנה לקראת הפסיכומטרי – חשיבה כמותית, מילולית, אנגלית וניהול זמנים.",
     tag: "נוער ומבוגרים",
-    emoji: "🎓",
+    icon: <GraduationCap className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "מבחנים קוגניטיביים",
     description:
       "הערכת יכולות קוגניטיביות – זיכרון, קשב, חשיבה לוגית ופתרון בעיות.",
     tag: "כל הגילאים",
-    emoji: "🧠",
+    icon: <Brain className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "מבחנים אקדמיים",
     description:
       "הכנה למבחני קבלה אקדמיים ומבחני מיון שונים – מבחני ידע, חשיבה ומיומנויות.",
     tag: "סטודנטים",
-    emoji: "📚",
+    icon: <BookOpen className="w-7 h-7 text-brand-600" />,
   },
   {
     title: "מבחני אישיות ומוטיבציה",
     description:
       "היכרות עם סגנון הלמידה, תחומי עניין ומוטיבציה לפני מבחנים ותהליכי מיון.",
     tag: "ליווי אישי",
-    emoji: "👤",
+    icon: <UserRound className="w-7 h-7 text-brand-600" />,
   },
 ];
+
 
 export function Specialties() {
   return (
@@ -69,7 +71,7 @@ export function Specialties() {
               {/* Icon + tag */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 text-xl">
-                  <span>{s.emoji}</span>
+                  <span>{s.icon}</span>
                 </div>
                 <span className="text-[11px] rounded-full bg-rose-100 text-rose-500 px-3 py-1">
                   {s.tag}
